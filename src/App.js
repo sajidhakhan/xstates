@@ -1,9 +1,9 @@
-
+import  Xstates from './Xstates';
 
 function App() {
   return (
     <div className="App">
-      
+      <Xstates />
     </div>
   );
 }
