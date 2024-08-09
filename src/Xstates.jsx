@@ -9,7 +9,6 @@ import React, { useState, useEffect } from 'react';
     const [selectedCity, setSelectedCity] = useState('');
   
     useEffect(() => {
-      // Fetch all countries from the API
       fetch('https://crio-location-selector.onrender.com/countries')
         .then(response => response.json())
         .then(data => setCountries(data))
@@ -19,10 +18,8 @@ import React, { useState, useEffect } from 'react';
     const handleCountryChange = event => {
       const country = event.target.value;
       setSelectedCountry(country);
-      setSelectedState(''); // Reset state and city when country changes
-      setCities([]); // Clear cities when country changes
-  
-      // Fetch states for the selected country
+      setSelectedState(''); 
+      setCities([]); 
       fetch(`https://crio-location-selector.onrender.com/country=${country}/states`)
         .then(response => response.json())
         .then(data => setStates(data))
@@ -32,9 +29,7 @@ import React, { useState, useEffect } from 'react';
     const handleStateChange = event => {
       const state = event.target.value;
       setSelectedState(state);
-      setCities([]); // Clear cities when state changes
-  
-      // Fetch cities for the selected state
+      setCities([]); 
       fetch(`https://crio-location-selector.onrender.com/country=${selectedCountry}/state=${state}/cities`)
         .then(response => response.json())
         .then(data => setCities(data))
@@ -44,15 +39,15 @@ import React, { useState, useEffect } from 'react';
     const handleCityChange = event => {
       const city = event.target.value;
       setSelectedCity(city);
-  
-      // Display the selected location
       alert(`You Selected ${city}, ${selectedState}, ${selectedCountry}`);
     };
   
     return (
-      <div>
-        <h2>Select Location</h2>
-        <select onChange={handleCountryChange} value={selectedCountry}>
+      <>
+      <h2>Select Location</h2>
+      <div className='stateContainer'>
+        
+        <select onChange={handleCountryChange} value={selectedCountry} className='selectStyle'>
           <option value="">Select Country</option>
           {countries.map(country => (
             <option key={country} value={country}>
@@ -61,7 +56,7 @@ import React, { useState, useEffect } from 'react';
           ))}
         </select>
   
-        <select onChange={handleStateChange} value={selectedState} disabled={!selectedCountry}>
+        <select onChange={handleStateChange} value={selectedState} className='selectStyle1' disabled={!selectedCountry}>
           <option value="">Select State</option>
           {states.map(state => (
             <option key={state} value={state}>
@@ -70,7 +65,7 @@ import React, { useState, useEffect } from 'react';
           ))}
         </select>
   
-        <select onChange={handleCityChange} value={selectedCity} disabled={!selectedState}>
+        <select onChange={handleCityChange} value={selectedCity} className='selectStyle2' disabled={!selectedState}>
           <option value="">Select City</option>
           {cities.map(city => (
             <option key={city} value={city}>
@@ -79,6 +74,7 @@ import React, { useState, useEffect } from 'react';
           ))}
         </select>
       </div>
+      </>
     );
 }
 
