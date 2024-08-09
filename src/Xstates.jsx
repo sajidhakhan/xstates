@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
     const [selectedCountry, setSelectedCountry] = useState('');
     const [selectedState, setSelectedState] = useState('');
     const [selectedCity, setSelectedCity] = useState('');
+    const [showLocation, setShowLocation] = useState(false);
   
     useEffect(() => {
       fetch('https://crio-location-selector.onrender.com/countries')
@@ -39,12 +40,12 @@ import React, { useState, useEffect } from 'react';
     const handleCityChange = event => {
       const city = event.target.value;
       setSelectedCity(city);
-      alert(`You Selected ${city}, ${selectedState}, ${selectedCountry}`);
+      setShowLocation(true);
     };
   
     return (
       <>
-      <h2>Select Location</h2>
+      <h1>Select Location</h1>
       <div className='stateContainer'>
         
         <select onChange={handleCountryChange} value={selectedCountry} className='selectStyle'>
@@ -74,6 +75,9 @@ import React, { useState, useEffect } from 'react';
           ))}
         </select>
       </div>
+      {showLocation && (
+        <h3>{`You Selected ${selectedCity}, ${selectedState}, ${selectedCountry}`}</h3>
+      )}
       </>
     );
 }
