@@ -23,10 +23,20 @@
     margin: 5px;
     Width: 200px;
 }
-h3{
+h1{
+  text-align: center;
+}
+.Dispaly-result{
+  margin-top: 20px;
+  font-size: 18px;
   text-align: center;
 }
 
-h1{
-  text-align: center;
+span{
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.fade{
+  color: #888;
 }

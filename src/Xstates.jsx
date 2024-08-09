@@ -76,7 +76,11 @@ import React, { useState, useEffect } from 'react';
         </select>
       </div>
       {showLocation && (
-        <h3>{`You Selected ${selectedCity}, ${selectedState}, ${selectedCountry}`}</h3>
+        <h2 className='Dispaly-result'>
+          You selected <span> {selectedCity},</span>
+          <span className='fade'>{" "} {selectedState}, {selectedCountry}</span>
+        </h2>
+        
       )}
       </>
     );
